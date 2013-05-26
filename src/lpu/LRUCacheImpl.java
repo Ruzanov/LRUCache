@@ -1,6 +1,5 @@
 package lpu;
 
-import java.util.ArrayList;
 import java.util.TreeMap;
 
 import data.Item;
@@ -42,7 +41,7 @@ public class LRUCacheImpl implements LRUCache<Item> {
 		for (Integer i = 0; i < sizeCache
 				&& i < getItemsStorage().getItemsStorage().size(); i++) {
 			itemAdd = getItemsStorage().getItemsStorage().get(i);
-			getCache().put(itemAdd.hashCode(), itemAdd);
+			getCache().put(itemAdd.getId(), itemAdd);
 			Log("load " + itemAdd.toString());
 		}
 	}
@@ -64,7 +63,7 @@ public class LRUCacheImpl implements LRUCache<Item> {
 			return getCache().get(id);
 		// Добавим в кеш
 		Item itemAdd = getItemById(id);
-		getCache().put(itemAdd.hashCode(), itemAdd);
+		getCache().put(itemAdd.getId(), itemAdd);
 		removeItem();
 		if (ItemFirst == null)
 			ItemFirst = itemAdd;
@@ -90,7 +89,7 @@ public class LRUCacheImpl implements LRUCache<Item> {
 		Item reload;
 		for (Integer key : getCache().keySet()) {
 			reload = getItemById(getCache().get(key).getId());
-			getCache().put(reload.hashCode(), reload);
+			getCache().put(reload.getId(), reload);
 		}
 	}
 
