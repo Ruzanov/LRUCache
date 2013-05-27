@@ -6,7 +6,7 @@ package lpu;
  */
 public class MainClass {
   public static void main(String[] args) {
-    LRUCacheImpl cache = new LRUCacheImpl(5, true,1000);
+    LRUCacheImpl cache = new LRUCacheImpl(10, true,100);
     cache.printCache();
     cache.getItem(588888885);
     cache.getItem(3);
@@ -15,8 +15,10 @@ public class MainClass {
     cache.getItem(588888885);  
     cache.printCache();
     cache.getItemsStorage().setValItem(2, "TWO");
-    cache.getItemsStorage().remove(1);    
+    cache.getItemsStorage().remove(5);    
+ 
     cache.reloadCache();
+    cache.getItem(22);
     cache.printCache();
   }
 }
