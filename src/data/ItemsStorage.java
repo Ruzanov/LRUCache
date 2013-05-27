@@ -24,8 +24,9 @@ public class ItemsStorage {
 
   public void remove(Integer inx) {
     if (inx != null)
-      if (itemsStorage.get(inx) != null)
-        System.out.println("remote item=" + itemsStorage.get(inx).toString());
+      if (itemsStorage != null)
+        if (itemsStorage.get(inx) != null)
+          System.out.println("remote item=" + itemsStorage.get(inx).toString());
     itemsStorage.remove(itemsStorage.get(inx));
   }
 }

@@ -1,6 +1,5 @@
 package lpu;
 
-
 import java.util.TreeMap;
 
 import data.Item;
@@ -17,17 +16,14 @@ public class LRUCacheImpl implements LRUCache<Item> {
   ItemsStorage itemsStorage;
 
   public LRUCacheImpl() {
-    super();
-    this.sizeCache = 10;
+    this(10, false);
   }
 
   public LRUCacheImpl(Integer sizeCache) {
-    super();
-    this.sizeCache = sizeCache;
+    this(sizeCache, false);
   }
 
   public LRUCacheImpl(Integer sizeCache, boolean isLoadItems) {
-    super();
     this.sizeCache = sizeCache;
     if (isLoadItems)
       loadItems();
@@ -49,9 +45,9 @@ public class LRUCacheImpl implements LRUCache<Item> {
   protected void removeItem() {
     if (getCache().size() > sizeCache)
       if (ItemFirst != null){
-        getCache().remove(ItemFirst.hashCode());
+        getCache().remove(ItemFirst.getId());
         Log("remove " + ItemFirst.toString());
-        ItemFirst = (Item) getCache().remove(getCache().firstKey());
+        ItemFirst = null;
       }
   }
 
@@ -61,19 +57,21 @@ public class LRUCacheImpl implements LRUCache<Item> {
       return null;
     if (isExistsItem(id))
       return getCache().get(id);
-    // Добавим в кеш
     Item itemAdd = getItemById(id);
-    getCache().put(itemAdd.getId(), itemAdd);
-    removeItem();
+    if (itemAdd != null)
+      getCache().put(itemAdd.getId(), itemAdd);
     if (ItemFirst == null)
-      ItemFirst = itemAdd;
+      ItemFirst = getCache().get(getCache().firstKey());
+    removeItem();
     return itemAdd;
   }
 
   private Item getItemById(Integer id) {
-    for (Item key: itemsStorage.getItemsStorage())
-      if (key.getId() == id)
-        return key;
+    if (itemsStorage != null){
+      for (Item key: itemsStorage.getItemsStorage())
+        if (key.getId() == id)
+          return key;
+    }
     return null;
   }
 
@@ -96,9 +94,10 @@ public class LRUCacheImpl implements LRUCache<Item> {
         getCache().put(reload.getId(), reload);
     }
     keySet.clear();
+    ItemFirst = null;
   }
 
-  public TreeMap<Integer, Item> getCache() {
+  protected TreeMap<Integer, Item> getCache() {
     if (cache == null)
       cache = new TreeMap<Integer, Item>();
     return cache;
@@ -114,5 +113,6 @@ public class LRUCacheImpl implements LRUCache<Item> {
     for (Integer key: getCache().keySet())
       Log(getCache().get(key).toString());
     Log("size cache=" + getCache().size());
+    Log("-------------------------------");
   }
 }
