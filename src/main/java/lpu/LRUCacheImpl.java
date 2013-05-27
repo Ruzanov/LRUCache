@@ -1,10 +1,10 @@
-package lpu;
+package main.java.lpu;
 
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-import data.Item;
-import data.ItemsStorage;
+import main.java.data.Item;
+import main.java.data.ItemsStorage;
 
 /**
  * Created with IntelliJ IDEA. User: inver Date: 26.05.13 Time: 15:43 To change

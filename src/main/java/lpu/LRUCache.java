@@ -1,5 +1,5 @@
-package lpu;
-import data.Item;
+package main.java.lpu;
+import main.java.data.Item;
 
 /**
  * Created with IntelliJ IDEA.

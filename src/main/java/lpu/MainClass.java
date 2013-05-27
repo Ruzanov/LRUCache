@@ -1,4 +1,4 @@
-package lpu;
+package main.java.lpu;
 
 /**
  * Created with IntelliJ IDEA. User: inver Date: 26.05.13 Time: 15:44 To change

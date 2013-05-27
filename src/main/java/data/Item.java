@@ -1,4 +1,4 @@
-package data;
+package main.java.data;
 
 /**
  * Created with IntelliJ IDEA. User: inver Date: 26.05.13 Time: 15:48 To change

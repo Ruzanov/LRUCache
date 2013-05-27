@@ -1,11 +1,10 @@
-package test;
+package main.java.test;
 
 import junit.framework.Assert;
-import lpu.LRUCacheImpl;
+import main.java.data.Item;
+import main.java.lpu.LRUCacheImpl;
 
 import org.junit.Test;
-
-import data.Item;
 
 public class testLPUBig {
 	LRUCacheImpl lpuImpl;
