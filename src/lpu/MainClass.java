@@ -6,13 +6,13 @@ package lpu;
  */
 public class MainClass {
   public static void main(String[] args) {
-    LRUCacheImpl cache = new LRUCacheImpl(5, true);
+    LRUCacheImpl cache = new LRUCacheImpl(5, true,1000);
     cache.printCache();
-    cache.getItem(8);
+    cache.getItem(588888885);
     cache.getItem(3);
     cache.getItem(11);
     cache.getItem(12);
-    cache.getItem(13);  
+    cache.getItem(588888885);  
     cache.printCache();
     cache.getItemsStorage().setValItem(2, "TWO");
     cache.getItemsStorage().remove(1);    

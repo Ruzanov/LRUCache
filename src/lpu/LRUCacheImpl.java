@@ -16,15 +16,17 @@ public class LRUCacheImpl implements LRUCache<Item> {
   ItemsStorage itemsStorage;
 
   public LRUCacheImpl() {
-    this(10, false);
+    this(10, false,100);
   }
 
   public LRUCacheImpl(Integer sizeCache) {
-    this(sizeCache, false);
+    this(sizeCache, false,100);
   }
 
-  public LRUCacheImpl(Integer sizeCache, boolean isLoadItems) {
+  public LRUCacheImpl(Integer sizeCache, boolean isLoadItems, Integer sizeStorage) {
     this.sizeCache = sizeCache;
+    itemsStorage = new ItemsStorage();
+    itemsStorage.setSizeStorage(sizeStorage);
     if (isLoadItems)
       loadItems();
   }
@@ -89,7 +91,9 @@ public class LRUCacheImpl implements LRUCache<Item> {
     TreeMap<Integer, Item> keySet = (TreeMap<Integer, Item>) getCache().clone();
     getCache().clear();
     for (Integer key: keySet.keySet()){
-      reload = getItemById(key);
+      if (key == null)
+      	return;
+    	reload = getItemById(key);
       if (reload != null)
         getCache().put(reload.getId(), reload);
     }
