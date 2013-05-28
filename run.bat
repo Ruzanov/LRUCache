@@ -1,0 +1,1 @@
+java -cp ./target/classes lpu.MainClass 10 200
