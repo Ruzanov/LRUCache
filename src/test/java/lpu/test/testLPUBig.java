@@ -7,13 +7,13 @@ import org.junit.Test;
 
 import data.Item;
 
-public class testLPUBig {
+public class TestLPUBig {
 	LRUCacheImpl lpuImpl;
 	Item data;
 
 	@Test
 	public void testLoad() {
-		lpuImpl = new LRUCacheImpl(60009999, true, 30000);
+		lpuImpl = new LRUCacheImpl(60009999, true, 3000);
 		 System.out.println("lpuImpl = new LRUCacheImpl(60009999, true, 30000)");
 		data = lpuImpl.getItem(300);
 		System.out.println("data = lpuImpl.getItem(300);");
@@ -27,7 +27,7 @@ public class testLPUBig {
 		lpuImpl.printCache();
 		System.out.println("lpuImpl.printCache();");
 		data = lpuImpl.getItem(300);
-		lpuImpl.getItemsStorage().setValItem(30000-10, "TWO");
+		lpuImpl.getItemsStorage().setValItem(3000-5, "TWO");
 		System.out.println("lpuImpl.getItemsStorage().setValItem(30000-1, TWO);");
 		lpuImpl.printCache();
 		
